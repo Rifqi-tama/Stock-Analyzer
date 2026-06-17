@@ -6,7 +6,7 @@ import type { Timeframe } from "@/lib/types";
 const valid = new Set(["1D", "1W", "1M", "3M", "6M", "1Y", "5Y"]);
 
 export async function GET(request: NextRequest) {
-  const symbol = (request.nextUrl.searchParams.get("symbol") || "AAPL").trim().toUpperCase();
+  const symbol = (request.nextUrl.searchParams.get("symbol") || "BBCA").trim().toUpperCase();
   const tf = request.nextUrl.searchParams.get("timeframe") || "6M";
   const timeframe = (valid.has(tf) ? tf : "6M") as Timeframe;
   try {
