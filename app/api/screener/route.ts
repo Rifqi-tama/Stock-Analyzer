@@ -2,7 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { buildAnalysis } from "@/lib/analyzer";
 import { fetchCandles, fetchFundamentals, fetchNews } from "@/lib/market-data";
 
-const lists: Record<string, string[]> = { uptrend: ["NVDA", "MSFT", "AAPL", "AVGO", "META"], breakout: ["AMD", "TSLA", "SHOP", "PLTR", "COIN"], undervalued: ["GOOGL", "BABA", "PYPL", "DIS", "INTC"], growth: ["NVDA", "AMZN", "CRM", "NOW", "SNOW"], dividend: ["KO", "PEP", "JNJ", "PG", "XOM"], oversold: ["NKE", "SBUX", "PFE", "BA", "WBA"], volume: ["TSLA", "AMD", "NVDA", "AAPL", "SOFI"], riskReward: ["MSFT", "GOOGL", "AMZN", "V", "MA"] };
+const lists: Record<string, string[]> = {
+  uptrend: ["BBCA", "BBRI", "BMRI", "TLKM", "ASII"],
+  breakout: ["ANTM", "MDKA", "ADRO", "UNTR", "INCO"],
+  undervalued: ["BBNI", "INDF", "ICBP", "PGAS", "PTBA"],
+  growth: ["AMMN", "BRIS", "TPIA", "GOTO", "BUKA"],
+  dividend: ["BBCA", "BBRI", "BMRI", "TLKM", "PTBA"],
+  oversold: ["GOTO", "BUKA", "WIKA", "WSKT", "MEDC"],
+  volume: ["BBRI", "BBCA", "GOTO", "TLKM", "ANTM"],
+  riskReward: ["BBCA", "BBRI", "BMRI", "TLKM", "ASII"]
+};
 
 export async function GET(request: NextRequest) {
   const preset = request.nextUrl.searchParams.get("preset") || "riskReward";
