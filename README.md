@@ -1,36 +1,48 @@
 # AI Stock Analysis App
 
-A web-based stock analysis dashboard built with Next.js, API routes, Tailwind CSS, and optional OpenAI/Supabase integrations. It analyzes a ticker with near real-time market data, technical indicators, fundamentals, valuation, news sentiment, recommendations, strategy, a screener, and a watchlist.
+A web-based stock analysis dashboard built with Next.js, API routes, Tailwind CSS, and optional OpenAI/Supabase integrations. It analyzes stocks with public internet data, technical indicators, fundamentals, valuation, news sentiment, recommendations, strategy, a screener, and a watchlist.
+
+## Indonesia / IDX Support
+
+The app is configured for Indonesian stocks by default.
+
+- Type `BBCA`, `BBRI`, `BMRI`, `TLKM`, `ASII`, and similar 4-letter IDX ticker codes.
+- The app automatically converts them to Yahoo Finance IDX format, for example `BBCA.JK`.
+- You can also type the full symbol yourself, such as `BBCA.JK`.
+- IHSG / IDX Composite is commonly available as `^JKSE`.
+
+Free public sources are usually near real-time or delayed, not official exchange-grade live feeds. For true professional real-time IDX data, you need an official broker API or licensed market data vendor.
 
 ## Features
 
-- Search any supported stock symbol, including Yahoo-style suffixes such as `BBCA.JK`.
-- Candlestick chart with multiple timeframes: `1D`, `1W`, `1M`, `3M`, `6M`, `1Y`, `5Y`.
-- Technical analysis: SMA, EMA, RSI, MACD, Bollinger Bands, Fibonacci level, support/resistance, volume, breakout/breakdown, and candlestick pattern signals.
+- Indonesian stock search with automatic `.JK` ticker handling.
+- Candlestick chart with timeframes: `1D`, `1W`, `1M`, `3M`, `6M`, `1Y`, `5Y`.
+- Technical analysis: SMA, EMA, RSI, MACD, Bollinger Bands, support/resistance, volume, breakout/breakdown, and candlestick pattern signals.
 - Fundamental analysis: revenue, net profit, EPS, PER, PBV, ROE, debt, debt/equity, cash flow, growth, and dividends when available.
 - Fair value estimate using PER, PBV, simplified cash-flow proxy, and historical momentum value.
-- News sentiment with Finnhub when `FINNHUB_API_KEY` is configured.
 - Recommendation engine: Buy, Hold, Sell, Watchlist, or Avoid.
 - Strategy panel with entry area, stop loss, take profits, timeframe, risk, sizing, and invalidation.
-- Screener presets for uptrend, breakout, undervalued, growth, dividend, oversold rebound, volume accumulation, and risk/reward.
+- Indonesian screener presets for banks, blue chips, commodities, growth names, dividends, oversold names, and volume candidates.
 - Watchlist API with Supabase REST support and an in-memory fallback for local demos.
 - Beginner-friendly explanation, optionally enhanced by OpenAI.
 
 ## Setup
 
-1. Install dependencies:
+1. Install Node.js LTS from https://nodejs.org.
+
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Copy environment variables:
+3. Copy environment variables:
 
 ```bash
-cp .env.example .env.local
+copy .env.example .env.local
 ```
 
-3. Add keys as needed:
+4. Add optional keys as needed:
 
 ```bash
 OPENAI_API_KEY=your_openai_key
@@ -40,13 +52,13 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ```
 
-4. Run the app:
+5. Run the app:
 
 ```bash
 npm run dev
 ```
 
-5. Open `http://localhost:3000`.
+6. Open `http://localhost:3000`.
 
 ## Data Sources
 
@@ -67,7 +79,3 @@ For production, replace the demo-wide watchlist policies with user-based RLS pol
 ## Important Disclaimer
 
 This application is for educational and analytical purposes only. It is not financial advice. Users must do their own research before buying or selling stocks.
-
-## Notes
-
-The recommendation engine combines technical score, fundamental score, valuation score, news sentiment, risk/reward, and market trend. It is designed to explain reasoning and invalidation points rather than produce blind buy/sell calls.
